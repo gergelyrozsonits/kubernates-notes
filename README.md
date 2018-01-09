@@ -96,7 +96,13 @@ kubernetes-bootcamp-6db74b9f76-rqzq2   1/1       Running   0          1h
 Also the logs can be accessed with having the pod name with the following command:
 
 ```
-./kubectl logs kubernetes-bootcamp-6db74b9f76-rqzq2
+./kubectl logs <POD_NAME>
+```
+
+Kubectl also let us to execute command on a container in a pod with:
+
+```
+./kubectl exec <POD_NAME> <CMD>
 ```
 
 > Please note: The same infomration can be retrieved by using the admin page as well.
@@ -122,6 +128,16 @@ Now, with having the pod name the deployed container can be accessed via the pro
 ```
 http://localhost:8001/api/v1/proxy/namespaces/default/pods/<NAME>/
 ```
+
+With having the proxy up and running the following result has to be seen in case of ```kubernetes-bootcamp```
+
+```
+Hello Kubernetes bootcamp! | Running on: kubernetes-bootcamp-6db74b9f76-rqzq2 | v=1
+```
+
+# PODS | NODES | DEPLOYMENTS
+Pods are the atomic units of Kube and these are the logical hosts for a containerized applications. A Pod established by relatively tightly coupled applications and some of the resources are shared (volumes, IP address and port assignment ...). The apps in a Pod cannot be deployed separately.
+Nodes are the virtual/physical machines behind Kubeernates, Pods are deployed on these Nodes (a single Pod is never shared between multiple nodes). Each Node runs the Kubelet process which is communicating with the Master in Kube claster and also the containers with the applications.
 
 Commands:
 Delete deployment ```./kubectl delete deployment <NAME>```
